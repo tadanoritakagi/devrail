@@ -5,8 +5,7 @@
   },
 
   "nginx": {
-    "port": 80,
-    "env": "ruby"
+    "port": 80
   },
 
   "run_list": [

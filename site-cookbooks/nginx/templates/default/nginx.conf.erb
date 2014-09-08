@@ -10,13 +10,6 @@ events {
 http {
     include /etc/nginx/mime.types;
     default_type application/octet-stream;
-
-    <% if node['nginx']['env'].include?("ruby") %>
-    upstream unicorn {
-        server unix:/tmp/unicorn.sock;
-    }
-    <% end %>
-
     server {
         listen <%= node['nginx']['port'] %>;
         server_name localhost;
@@ -24,12 +17,5 @@ http {
             root /usr/share/nginx/html;
             index index.html index.htm;
         }
-
-        <% if node['nginx']['env'].include?("ruby") %>
-        location /unicorn {
-            rewrite ^/unicorn/(.+) /$1 break;
-            proxy_pass http://unicorn/$1;
-        }
-        <% end %>
     }
 }
