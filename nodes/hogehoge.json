@@ -1,7 +1,25 @@
 {
+
+  "mysql": {
+    "server_root_password": "rootpass"
+  },
+
+  "nginx": {
+    "port": 80
+  },
+
   "run_list": [
 
+  "recipe[vim]",
+  "recipe[mysql]",
+  "recipe[yum-epel]",
+  "recipe[iptables]",
+  "recipe[nginx]",
+  "recipe[ruby-env]"
+
   ],
+
+
   "automatic": {
     "ipaddress": "hogehoge"
   }
